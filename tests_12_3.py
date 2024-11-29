@@ -30,6 +30,32 @@ import unittest
 from unittest import TestCase
 import random
 import runner_and_tournament as rat
+import runner
+
+class RunnerTest(unittest.TestCase):
+    @unittest.skipIf(random.choice([True, False]), 'Не повезло,Тесты в этом кейсе заморожены')
+    def test_walk(self):
+        runner1=runner.Runner('бегун 1')
+        for i in range(10):
+            runner1.walk()
+        self.assertEqual(runner1.distance, 50)
+
+    @unittest.skipIf(random.choice([True, False]), 'Не повезло,Тесты в этом кейсе заморожены')
+    def test_run(self):
+        runner2 = runner.Runner('бегун 2')
+        for i in range(10):
+            runner2.run()
+        self.assertEqual(runner2.distance, 100)
+
+    @unittest.skipIf(random.choice([True, False]), 'Не повезло,Тесты в этом кейсе заморожены')
+    def test_challenge(self):
+        runner1=runner.Runner('бегун 1')
+        runner2=runner.Runner('бегун 2')
+
+        runner1.walk()
+        runner2.run()
+
+        self.assertNotEqual(runner1.distance,runner2.distance)
 
 
 class TournamentTest(unittest.TestCase):
